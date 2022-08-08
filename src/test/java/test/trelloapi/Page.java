@@ -11,7 +11,7 @@ import java.util.List;
 import static com.testinium.utility.ApplicationConfig.readFromConfigProperties;
 import static org.hamcrest.CoreMatchers.equalTo;
 
-public class Page extends APIBasePage {
+public class Page {
     public static RequestSpecification request;
     public static Response response;
     private String boardID;
@@ -29,6 +29,7 @@ public class Page extends APIBasePage {
         request.body(pathParam.toString());
         response = request.when().post("/boards");
         response.then().statusCode(200).body("name", equalTo(boardName));
+        System.out.println(response.getBody().prettyPrint());
         boardID = response.jsonPath().getString("id");
     }
 
@@ -39,6 +40,7 @@ public class Page extends APIBasePage {
         request.body(pathParam.toString());
         response = request.when().post("/lists");
         response.then().statusCode(200).body("name", equalTo(listName));
+        System.out.println(response.getBody().prettyPrint());
         listID = response.jsonPath().getString("id");
     }
 
@@ -49,6 +51,7 @@ public class Page extends APIBasePage {
         request.body(pathParam.toString());
         response = request.when().post("/cards");
         response.then().statusCode(200).body("name", equalTo(cardName));
+        System.out.println(response.getBody().prettyPrint());
         cardID.add(response.jsonPath().getString("id"));
     }
 
@@ -59,17 +62,27 @@ public class Page extends APIBasePage {
         request.body(pathParam.toString());
         response = request.when().put("/cards/" + id);
         response.then().statusCode(200).body("name", equalTo(cardName));
+        System.out.println(response.getBody().prettyPrint());
     }
 
     public void deleteCard(int index) {
         String id = cardID.get(index);
         response = request.when().delete("/cards/" + id);
         response.then().statusCode(200);
+        System.out.println(response.getBody().prettyPrint());
     }
 
     public void deleteBoard() {
         response = request.when().delete("/boards/" + boardID);
         response.then().statusCode(200);
+        System.out.println(response.getBody().prettyPrint());
+    }
+
+    public boolean verifyStatusCode(){
+        if(response.getStatusCode()==200)
+            return true;
+        else
+            return false;
     }
 
 }

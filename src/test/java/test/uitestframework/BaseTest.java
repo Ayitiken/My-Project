@@ -11,7 +11,7 @@ import static com.testinium.utility.ApplicationConfig.readFromConfigProperties;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @ExtendWith(TestResultLogger.class)
-public class BasePage {
+public class BaseTest {
     WebDriver driver;
     String configFile = "config.properties";
     String url = readFromConfigProperties(configFile, "url");

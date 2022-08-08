@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 
-public class TestRunner extends BasePage {
+public class TestRunner extends BaseTest {
     HomePage homePage;
     TestDataHolder testDataHolder;
     ExcelUtility excelUtility;
