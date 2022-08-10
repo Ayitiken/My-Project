@@ -1,4 +1,4 @@
-package test.trelloapi;
+package test.trelloapiwithjunit;
 
 import io.restassured.RestAssured;
 import org.junit.jupiter.api.AfterEach;

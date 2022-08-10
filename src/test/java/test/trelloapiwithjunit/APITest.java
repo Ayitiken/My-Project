@@ -1,4 +1,4 @@
-package test.trelloapi;
+package test.trelloapiwithjunit;
 
 import org.junit.jupiter.api.Test;
 import java.util.Random;
@@ -11,7 +11,6 @@ public class APITest extends APIBaseTest {
 
     @Test
     public void trelloApiTest() {
-
         page.createBoard("Simple Board");
         assertTrue(page.verifyStatusCode());
         page.createList("the first list");
