@@ -29,7 +29,7 @@ public class Page {
         request.body(pathParam.toString());
         response = request.when().post("/boards");
         response.then().statusCode(200).body("name", equalTo(boardName));
-        System.out.println(response.getBody().prettyPrint());
+        response.getBody().prettyPrint();
         boardID = response.jsonPath().getString("id");
     }
 
@@ -40,7 +40,7 @@ public class Page {
         request.body(pathParam.toString());
         response = request.when().post("/lists");
         response.then().statusCode(200).body("name", equalTo(listName));
-        System.out.println(response.getBody().prettyPrint());
+        response.getBody().prettyPrint();
         listID = response.jsonPath().getString("id");
     }
 
@@ -51,7 +51,7 @@ public class Page {
         request.body(pathParam.toString());
         response = request.when().post("/cards");
         response.then().statusCode(200).body("name", equalTo(cardName));
-        System.out.println(response.getBody().prettyPrint());
+        response.getBody().prettyPrint();
         cardID.add(response.jsonPath().getString("id"));
     }
 
@@ -62,20 +62,20 @@ public class Page {
         request.body(pathParam.toString());
         response = request.when().put("/cards/" + id);
         response.then().statusCode(200).body("name", equalTo(cardName));
-        System.out.println(response.getBody().prettyPrint());
+        response.getBody().prettyPrint();
     }
 
     public void deleteCard(int index) {
         String id = cardID.get(index);
         response = request.when().delete("/cards/" + id);
         response.then().statusCode(200);
-        System.out.println(response.getBody().prettyPrint());
+        response.getBody().prettyPrint();
     }
 
     public void deleteBoard() {
         response = request.when().delete("/boards/" + boardID);
         response.then().statusCode(200);
-        System.out.println(response.getBody().prettyPrint());
+        response.getBody().prettyPrint();
     }
 
     public boolean verifyStatusCode(){
